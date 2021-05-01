@@ -7,7 +7,7 @@ const app = express()
 require('./startup/logging')()
 require('./startup/db')()
 require('./startup/route')(app)
-require('./startup/config')()
+require('./startup/configurations')()
 require('./startup/validation')()
 
 // For securing our application
