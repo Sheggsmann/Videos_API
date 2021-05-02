@@ -2,9 +2,15 @@ const mongoose = require('mongoose')
 const winston = require('winston')
 const config = require('config')
 
+mongoose.Promise = global.Promise
+let mongo_uri = config.get('db')
+
 module.exports = function() { 
-    mongoose.connect(config.get('db'), {
-        useNewUrlParser: true,
-        useUnifiedTopology: true   
-    }).then(() => winston.info(`Connected to ${db}`))
+    // console.log("[DATABASE]:", database)
+    mongoose.connect(mongo_uri, {
+        useMongoClient: true
+    }).then(() => { 
+        winston.info(`Connected to ${mongo_uri}`)
+    })
+    .catch(err => winston.error(err.message))
 }

@@ -15,7 +15,7 @@ Fawn.init(mongoose)
 
 
 router.get('/', async (req, res) => {
-    const rentals = Rental.find().sort('-dateOut')
+    const rentals = await Rental.find().sort('-dateOut')
     res.send(rentals)
 })
 

@@ -50,6 +50,7 @@ describe('/api/returns', () => {
     let customerId
     let movieId
     let movie
+    let rental
 
     const exec = () => {
         return request(server)
