@@ -14,3 +14,4 @@ module.exports = function() {
     })
     .catch(err => winston.error(err.message))
 }
+
