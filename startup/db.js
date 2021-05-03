@@ -11,7 +11,6 @@ if (!mongo_uri) {
 
 
 module.exports = function() { 
-    // console.log("[DATABASE]:", database)
     mongoose.connect(mongo_uri, {
         useMongoClient: true
     }).then(() => { 
