@@ -2,17 +2,26 @@ const mongoose = require('mongoose')
 const winston = require('winston')
 const config = require('config')
 
-mongoose.Promise = global.Promise
 let mongo_uri = process.env.vidly_db
-console.log(mongo_uri)
+
+if (!mongo_uri) {
+    console.log("[FATAL ERROR]: No database connection string provided.")
+    process.exit(1)
+}
+
 
 module.exports = function() { 
     // console.log("[DATABASE]:", database)
     mongoose.connect(mongo_uri, {
         useMongoClient: true
     }).then(() => { 
-        winston.info(`Connected to ${mongo_uri}`)
+        console.log("[CONNECTED TO DATABASE]")
+        winston.info(`Connected to Database`)
     })
-    .catch(err => winston.error(err.message))
+    .catch(err => {
+        console.log(err.message)
+        winston.error(err.message)
+    })
 }
+
 
