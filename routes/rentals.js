@@ -48,11 +48,11 @@ router.post('/', [auth, validateMiddleware(validate)], async (req, res) => {
 
     /*
     There is a problem addressed here, a situation whereby our server crashes, or
-    rental returns an erro during operation, the movie in stock will not be updated
+    rental returns an error during operation, the movie in stock will not be updated
     thereby leading to in-cosistent data.
 
     This is where [TRANSACTIONS] come in.
-    Transactions ensure that all the operations are completed or all of them are exited
+    Transactions ensure that all the operations are completed, or all of them are exited
     once the first one returns an error.
 
     We don't really have transactions in mongodb, but we can use an npm module to simulate

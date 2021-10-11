@@ -1,7 +1,5 @@
 const moment = require('moment')
 const Joi = require('joi')
-// Set the ObjectId property of Joi to the function from Joi-objectid
-Joi.objectId = require('joi-objectid')(Joi)
 const mongoose = require('mongoose')
 
 // The rental model

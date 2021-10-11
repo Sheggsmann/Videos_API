@@ -30,8 +30,9 @@ const userSchema = new mongoose.Schema({
 })
 
 // Defining methods or functions for a model through the schema
+// These methods are applicable to the instances of the user class.
 userSchema.methods.generateAuthToken = function() {
-    return jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, config.get('jwtPrivateKey'))
+    return jwt.sign({ _id: this._id, isAdmin: this.isAdmin, name: this.name, email: this.email }, config.get('jwtPrivateKey'))
 }
 
 

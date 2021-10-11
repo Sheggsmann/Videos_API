@@ -4,9 +4,11 @@ const config = require('config')
 
 // Middleware for authorization
 module.exports = function(req, res, next) {
+    if (!config.get('requiresAuth')) return next();
     // Get the token from the request header.
     const token = req.header('x-auth-token')
     // If it is not valid, return an Access Denied error
+
     if (!token) return res.status(401).send("Access Denied, No token given")
 
     // If the token is not valid, it raises an excpetion

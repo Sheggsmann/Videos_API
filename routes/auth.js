@@ -6,7 +6,7 @@ const express = require('express')
 
 const router = express.Router()
 
-
+// When the user tries to login, we collect his email and check if it matches an account in the database.
 router.post('/', validate(validateUser), async (req, res) => {
     const user = await User.findOne({ email: req.body.email })
     if (!user) return res.status(400).send("Invalid email or password")

@@ -50,7 +50,12 @@ router.post('/', validateMiddleware(validate), async (req, res) => {
     of the user model, following the [INFORMATION EXPERT PRINCIPLE] from OOP.
     */
     const token = user.generateAuthToken()
-    res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']))
+    // Remember to add the (access-control-expose-headers) to enable our front-end read it.
+    res
+        .header('x-auth-token', token)
+        .header('access-control-expose-headers', 'x-auth-token')
+        .send(_.pick(user, ['_id', 'name', 'email']))
+
 })
 
 
